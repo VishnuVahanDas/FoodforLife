@@ -1,0 +1,140 @@
+.donation-checkout {
+    background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+}
+
+.donation-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 40px;
+    border: 1px solid #e8eef5;
+}
+
+.donation-card__header {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eef2f7;
+    padding-bottom: 20px;
+}
+
+.donation-card__header h2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.donation-card__header p {
+    color: #5d7288;
+    margin: 0;
+}
+
+.donation-form .form-label {
+    font-weight: 600;
+    color: #2a3a4c;
+    margin-bottom: 8px;
+}
+
+.donation-form .form-control {
+    border-radius: 12px;
+    border: 1px solid #d7e1ec;
+    padding: 12px 14px;
+    box-shadow: none;
+}
+
+.donation-form .form-control:focus {
+    border-color: #0080ff;
+    box-shadow: 0 0 0 0.15rem rgba(0, 128, 255, 0.15);
+}
+
+.donation-amount {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.amount-option {
+    position: relative;
+    border: 1px solid #d7e1ec;
+    border-radius: 12px;
+    padding: 12px 14px;
+    background: #f6f9ff;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-weight: 700;
+    color: #0b2648;
+    text-align: center;
+}
+
+.amount-option input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.amount-option:hover {
+    border-color: #0080ff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.amount-option input:checked + span,
+.amount-option input:checked ~ span {
+    color: #ffffff;
+}
+
+.amount-option input:checked ~ span,
+.amount-option input:checked + span {
+    background: linear-gradient(135deg, #0a9dff, #0066ff);
+    display: inline-block;
+    width: 100%;
+    border-radius: 10px;
+    padding: 8px 10px;
+    transition: background 0.2s ease-in-out;
+}
+
+.amount-option--other {
+    background: #fff7eb;
+    border-color: #ffd399;
+    color: #b36b00;
+}
+
+.other-amount {
+    margin-top: 14px;
+    display: none;
+}
+
+.other-amount.is-visible {
+    display: block;
+}
+
+.donation-checkbox {
+    padding: 14px 16px;
+    background: #f4f8fb;
+    border-radius: 12px;
+    border: 1px dashed #cbd8e6;
+}
+
+.address-fields {
+    display: none;
+    margin-top: 10px;
+    padding: 18px;
+    border-radius: 14px;
+    background: #f8fbff;
+    border: 1px solid #e4edf7;
+}
+
+.address-fields.is-visible {
+    display: block;
+}
+
+.donation-submit {
+    padding: 14px 24px;
+    font-weight: 700;
+    border-radius: 12px;
+    text-transform: uppercase;
+}
+
+@media (max-width: 575px) {
+    .donation-card {
+        padding: 28px 22px;
+    }
+}

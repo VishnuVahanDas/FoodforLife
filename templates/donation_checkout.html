@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block doc_title %} Donation Checkout | {% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/donation.css' %}">
+{% endblock %}
+{% block content %}
+
+    <section class="page-header">
+        <div class="page-header__bg" style="background-image: url({% static 'images/backgrounds/page-header-bg-1-1.jpg' %});"></div>
+        <div class="container">
+            <div class="page-header__content">
+                <h2 class="page-header__title bw-split-in-right">Donation Checkout</h2>
+                <ul class="gotur-breadcrumb list-unstyled">
+                    <li><a href="/">Home</a></li>
+                    <li><span>Donation Checkout</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="donation-checkout section-space">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 col-xl-9">
+                    <div class="donation-card shadow-lg">
+                        <div class="donation-card__header">
+                            <h2>Donor details</h2>
+                            <p>We’ll email a receipt after successful payment.</p>
+                        </div>
+                        <form class="donation-form">
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <label class="form-label" for="full-name">Full name</label>
+                                    <input id="full-name" name="full_name" type="text" class="form-control" placeholder="Enter your full name">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="email">Email</label>
+                                    <input id="email" name="email" type="email" class="form-control" placeholder="name@example.com">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="phone">Phone</label>
+                                    <input id="phone" name="phone" type="tel" class="form-control" placeholder="Enter your phone number">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Amount (₹)</label>
+                                    <div class="donation-amount">
+                                        <label class="amount-option">
+                                            <input type="radio" name="amount" value="501" checked>
+                                            <span>₹501</span>
+                                        </label>
+                                        <label class="amount-option">
+                                            <input type="radio" name="amount" value="1001">
+                                            <span>₹1001</span>
+                                        </label>
+                                        <label class="amount-option">
+                                            <input type="radio" name="amount" value="5001">
+                                            <span>₹5001</span>
+                                        </label>
+                                        <label class="amount-option">
+                                            <input type="radio" name="amount" value="11001">
+                                            <span>₹11001</span>
+                                        </label>
+                                        <label class="amount-option amount-option--other">
+                                            <input type="radio" name="amount" value="other" data-other="true">
+                                            <span>Other amount</span>
+                                        </label>
+                                    </div>
+                                    <div class="other-amount" id="other-amount-field">
+                                        <label class="form-label" for="other-amount-input">Enter other amount</label>
+                                        <input type="number" id="other-amount-input" name="other_amount" class="form-control" min="1" placeholder="₹0.00">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label" for="purpose">Purpose</label>
+                                    <textarea id="purpose" name="purpose" class="form-control" rows="3" placeholder="Let us know how you want this donation to be used"></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check donation-checkbox">
+                                        <input class="form-check-input" type="checkbox" value="1" id="need-80g">
+                                        <label class="form-check-label" for="need-80g">
+                                            I need an 80G tax receipt
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="address-fields" id="address-section">
+                                    <div class="row g-4">
+                                        <div class="col-md-6">
+                                            <label class="form-label" for="address-line-1">Address line 1</label>
+                                            <input id="address-line-1" name="address_line_1" type="text" class="form-control" placeholder="House no, street">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label" for="address-line-2">Address line 2</label>
+                                            <input id="address-line-2" name="address_line_2" type="text" class="form-control" placeholder="Apartment, suite, etc.">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label" for="city">City</label>
+                                            <input id="city" name="city" type="text" class="form-control" placeholder="City">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label" for="state">State</label>
+                                            <input id="state" name="state" type="text" class="form-control" placeholder="State">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label" for="pin">PIN</label>
+                                            <input id="pin" name="pin" type="text" class="form-control" placeholder="Postal code">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label" for="country">Country</label>
+                                            <input id="country" name="country" type="text" class="form-control" placeholder="Country">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label" for="pan">PAN (optional)</label>
+                                            <input id="pan" name="pan" type="text" class="form-control" placeholder="ABCDE1234F">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 text-end">
+                                    <button type="submit" class="gotur-btn gotur-btn--base donation-submit">Proceed to payment</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        (function () {
+            const amountRadios = document.querySelectorAll('input[name="amount"]');
+            const otherAmountSection = document.getElementById('other-amount-field');
+            const receiptCheckbox = document.getElementById('need-80g');
+            const addressSection = document.getElementById('address-section');
+
+            const toggleOtherAmount = () => {
+                const selected = document.querySelector('input[name="amount"]:checked');
+                const showOther = selected && selected.dataset.other === 'true';
+                otherAmountSection.classList.toggle('is-visible', showOther);
+                const otherInput = document.getElementById('other-amount-input');
+                if (otherInput) {
+                    otherInput.required = showOther;
+                }
+            };
+
+            const toggleAddressSection = () => {
+                const shouldShow = receiptCheckbox.checked;
+                addressSection.classList.toggle('is-visible', shouldShow);
+                addressSection.querySelectorAll('input').forEach((input) => {
+                    input.required = shouldShow;
+                });
+            };
+
+            amountRadios.forEach((radio) => radio.addEventListener('change', toggleOtherAmount));
+            receiptCheckbox.addEventListener('change', toggleAddressSection);
+
+            toggleOtherAmount();
+            toggleAddressSection();
+        })();
+    </script>
+{% endblock %}

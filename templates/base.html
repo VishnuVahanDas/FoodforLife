@@ -38,6 +38,8 @@
 
     <!-- template styles -->
     <link rel="stylesheet" href="{% static 'css/gotur.css' %}">
+
+    {% block extra_head %}{% endblock %}
 </head>
 
 <body class="custom-cursor">
@@ -102,6 +104,7 @@
                             <li class="scrollToLink"><a href="/#about">About</a></li>
                             <li class="scrollToLink"><a href="/#trending">Donate</a></li>
                             <li class="scrollToLink"><a href="/#blog">Blog</a></li>
+                            <li><a href="/donation/">Donation</a></li>
                             <li class="scrollToLink"><a href="/contact">Contact</a></li>
                         </ul>
                     </nav><!-- /.main-header__nav -->

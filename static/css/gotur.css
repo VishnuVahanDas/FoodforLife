@@ -11230,6 +11230,41 @@ a + .listing-card-four__btns__hover {
 .destination-three__list__item + .destination-three__list__item {
   margin-top: 16px;
 }
+.destination-three__price-table {
+  margin-top: 24px;
+}
+.destination-three__price-title {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 16px;
+  color: var(--gotur-black, #1D231F);
+  text-align: center;
+}
+.donation-price-table {
+  background-color: var(--gotur-white, #fff);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.06);
+}
+.donation-price-table th,
+.donation-price-table td {
+  vertical-align: middle;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--gotur-black, #1D231F);
+}
+.donation-price-table th {
+  background-color: rgba(99, 171, 69, 0.1);
+}
+.donation-price-link {
+  font-weight: 800;
+  color: var(--gotur-base, #63AB45);
+  text-decoration: none;
+}
+.donation-price-link:hover {
+  color: var(--gotur-primary, #F7921E);
+  text-decoration: underline;
+}
 .destination-three__button {
   position: relative;
   background-position: center center;

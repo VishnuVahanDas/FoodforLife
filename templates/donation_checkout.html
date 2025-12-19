@@ -46,20 +46,36 @@
                                     <label class="form-label">Amount (₹)</label>
                                     <div class="donation-amount">
                                         <label class="amount-option">
-                                            <input type="radio" name="amount" value="501" checked>
-                                            <span>₹501</span>
+                                            <input type="radio" name="amount" value="1100" checked>
+                                            <span>₹1,100</span>
                                         </label>
                                         <label class="amount-option">
-                                            <input type="radio" name="amount" value="1001">
-                                            <span>₹1001</span>
+                                            <input type="radio" name="amount" value="2100">
+                                            <span>₹2,100</span>
                                         </label>
                                         <label class="amount-option">
-                                            <input type="radio" name="amount" value="5001">
-                                            <span>₹5001</span>
+                                            <input type="radio" name="amount" value="5100">
+                                            <span>₹5,100</span>
                                         </label>
                                         <label class="amount-option">
-                                            <input type="radio" name="amount" value="11001">
-                                            <span>₹11001</span>
+                                            <input type="radio" name="amount" value="11000">
+                                            <span>₹11,000</span>
+                                        </label>
+                                        <label class="amount-option">
+                                            <input type="radio" name="amount" value="21000">
+                                            <span>₹21,000</span>
+                                        </label>
+                                        <label class="amount-option">
+                                            <input type="radio" name="amount" value="51000">
+                                            <span>₹51,000</span>
+                                        </label>
+                                        <label class="amount-option">
+                                            <input type="radio" name="amount" value="77000">
+                                            <span>₹77,000</span>
+                                        </label>
+                                        <label class="amount-option">
+                                            <input type="radio" name="amount" value="330000">
+                                            <span>₹3,30,000</span>
                                         </label>
                                         <label class="amount-option amount-option--other">
                                             <input type="radio" name="amount" value="other" data-other="true">
@@ -132,14 +148,15 @@
             const otherAmountSection = document.getElementById('other-amount-field');
             const receiptCheckbox = document.getElementById('need-80g');
             const addressSection = document.getElementById('address-section');
+            const otherAmountInput = document.getElementById('other-amount-input');
+            const donationForm = document.querySelector('.donation-form');
 
             const toggleOtherAmount = () => {
                 const selected = document.querySelector('input[name="amount"]:checked');
                 const showOther = selected && selected.dataset.other === 'true';
                 otherAmountSection.classList.toggle('is-visible', showOther);
-                const otherInput = document.getElementById('other-amount-input');
-                if (otherInput) {
-                    otherInput.required = showOther;
+                if (otherAmountInput) {
+                    otherAmountInput.required = showOther;
                 }
             };
 
@@ -151,11 +168,47 @@
                 });
             };
 
+            const syncAmountFromQuery = () => {
+                const params = new URLSearchParams(window.location.search);
+                const amountValue = params.get('amount');
+
+                if (!amountValue) {
+                    return;
+                }
+
+                const matchedRadio = document.querySelector(`input[name="amount"][value="${amountValue}"]`);
+                if (matchedRadio) {
+                    matchedRadio.checked = true;
+                    toggleOtherAmount();
+                    return;
+                }
+
+                if (otherAmountInput) {
+                    const otherRadio = document.querySelector('input[name="amount"][data-other="true"]');
+                    if (otherRadio) {
+                        otherRadio.checked = true;
+                        otherAmountInput.value = amountValue;
+                        toggleOtherAmount();
+                    }
+                }
+            };
+
+            if (donationForm) {
+                donationForm.addEventListener('submit', (event) => {
+                    const selected = document.querySelector('input[name="amount"]:checked');
+                    if (selected && selected.dataset.other === 'true' && otherAmountInput && !otherAmountInput.value) {
+                        event.preventDefault();
+                        otherAmountInput.focus();
+                    }
+                });
+            }
+
             amountRadios.forEach((radio) => radio.addEventListener('change', toggleOtherAmount));
             receiptCheckbox.addEventListener('change', toggleAddressSection);
 
             toggleOtherAmount();
             toggleAddressSection();
+            syncAmountFromQuery();
         })();
     </script>
 {% endblock %}
